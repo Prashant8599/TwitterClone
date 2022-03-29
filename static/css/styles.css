@@ -18,7 +18,7 @@ post
 *****************/
 .post_form {
   padding: 20px 40px;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 .post_form input {
