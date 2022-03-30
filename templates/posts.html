@@ -25,14 +25,12 @@
   <!-- Output Post Section -->
   <section class="posts">
     <ul>
-      {%if posts.count == 0%}
-      <p class="p-3">no tweet</p>
-      {% else %} {% for post in posts %}
+      {% for post in posts %}
       <li>
         <!-- Menu Icon -->
         <img class="menu_icon js-menu-icon" src="{% static 'img/menu.png' %}" />
         <div class="menu">
-          <a href="/delete/{{ post.id }}/">Delete</a>
+          <a href="/delete/{{ post.id }}/">Delete</a>  <br>
           <a href="/edit/{{ post.id }}">Edit</a>
         </div>
 
@@ -46,26 +44,24 @@
           <div class="name">{{ post.name}}</div>
           <div class="datetime">{{ post.created_at }}</div>
           <p>{{ post.body }}</p>
+
+          {% if post.image.url %}
           <img
             src="{{post.image.url}}"
             style="width: 250px; height: 200px"
             alt=""
           />
           <div>
+            {% endif %}
             <a href="likes/{{ post.id }}"
-              ><img
-                src="{% static 'img/heart.png' %}"
-                style="width: 30px"
-                {{
-                post.likecount
-                }}
+              ><img src="{% static 'img/heart.png' %}" style="width: 30px"
             /></a>
-            <!-- {{post.likecount}} -->
+            {{post.likecount}}
           </div>
           <a href="/delete/{{post.id}}"></a>
         </div>
       </li>
-      {% endfor %} {% endif %}
+      {% endfor %}
     </ul>
   </section>
   <script
@@ -74,6 +70,17 @@
     crossorigin="anonymous"
   ></script>
   <script src="{% static 'js/posts.js' %}"></script>
+  <script>
+    $(function () {
+      // Executed when js-menu-icon js clicked
+      $(".js-menu-icon").click(function () {
+        // $(this) : self element, namely div.js-menu-icon
+        // next()  : Next to div.js-menu-icon,namely div.menu
+
+        $(this).next().toggle();
+      });
+    });
+  </script>
 </section>
 
 {% endblock %}

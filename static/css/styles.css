@@ -1,6 +1,6 @@
 html,
 body {
-  height: 100%;
+  height: auto;
 }
 
 .content {
@@ -92,6 +92,7 @@ post
 .posts li .name_body .datetime {
   color: gray;
 }
+
 
 @media screen and (max-width: 500px) {
   .posts li .name_body {
